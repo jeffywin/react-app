@@ -1,23 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {createStore} from 'redux'
+import chunk from 'redux-thunk'
+import { Provider } from 'react-redux'
+import {createStore, applyMiddleware, compose } from 'redux'
+// import { read, addNum, removeNum, addNumAsync } from './index.redux'
 import { read } from './index.redux'
 
-const store = createStore(read)
+const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
+const store = createStore(read, compose(
+			applyMiddleware(chunk),
+			devtools
+		)
+	)
 
-function render() {
-	ReactDOM.render(<App store={store}/>, document.getElementById('root'))
-}
-render()
-store.subscribe(render)
+	ReactDOM.render(
+			<Provider store={store}>
+				<App/>
+			</Provider>,
+			document.getElementById('root')
+		)
+
+// function render() {
+// 	ReactDOM.render(<App store={store} addNum={addNum} addNumAsync={addNumAsync} removeNum = {removeNum}/>, document.getElementById('root'))
+// }
+// render()
+// store.subscribe(render)
+
+
+
 
 // import './index.css';
-
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
-
-
 
 // 通过ruducer 创建store
 // function read(state, action) {

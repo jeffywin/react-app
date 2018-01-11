@@ -21,3 +21,11 @@ export function addNum() {
 export function removeNum() {
 	return {type: REMOVE_STAATE}
 }
+
+export function addNumAsync() {
+	return dispatch => {
+		setTimeout(() => {
+			dispatch(addNum())
+		},2000)
+	}
+}

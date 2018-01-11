@@ -1,23 +1,33 @@
 import React from 'react'
-import { addNum, removeNum } from './index.redux'
+import { connect } from 'react-redux'
+import { addNum, removeNum, addNumAsync } from './index.redux'
 
 class App extends React.Component {
   // constructor(props) {
   //   super(props)
   // }
   render() {
-      const store = this.props.store
-      const num = store.getState()
+      // const store = this.props.store
+      // const num = store.getState()
+      // const addNum = this.props.addNum
+      // const removeNum = this.props.removeNum
+      // const addNumAsync = this.props.addNumAsync
       return(
         <div>
-          <h1>现在的数量是{num}</h1>
-          <button onClick ={() => store.dispatch(addNum())}>加</button>
-          <button onClick ={() => store.dispatch(removeNum())}>减</button>
+          <h1>现在的数量是{this.props.num}</h1>
+          {/*<button onClick ={() => store.dispatch(addNum())}>加</button>*/}
+          <button onClick ={this.props.addNum}>加</button>
+          <button onClick ={this.props.removeNum}>减</button>
+          <button onClick ={this.props.addNumAsync}>延迟2秒再加</button>
         </div> 
       )
   }
 }
-
+const mapStateProps = (state) => {
+  return {num: state}
+}
+const actionCreators = { addNum, removeNum, addNumAsync }
+App = connect(mapStateProps, actionCreators)(App) // 装饰器
 export default App
 /*
 
