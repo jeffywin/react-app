@@ -1,6 +1,28 @@
 import React from 'react'
+import { addNum, removeNum } from './index.redux'
+
+class App extends React.Component {
+  // constructor(props) {
+  //   super(props)
+  // }
+  render() {
+      const store = this.props.store
+      const num = store.getState()
+      return(
+        <div>
+          <h1>现在的数量是{num}</h1>
+          <button onClick ={() => store.dispatch(addNum())}>加</button>
+          <button onClick ={() => store.dispatch(removeNum())}>减</button>
+        </div> 
+      )
+  }
+}
+
+export default App
+/*
+
 // import 'antd-mobile/dist/antd-mobile.css'
-import { Button } from 'antd-mobile'
+import { Button,List } from 'antd-mobile'
 
 class App extends React.Component {
   render() {
@@ -44,16 +66,26 @@ class Project extends React.Component {
     return(
       <div>
         <h2>我正在{this.props.name}</h2>
-        {/*<button onClick={() => this.readBook()}>点击阅读</button>*/}
+        {<button onClick={() => this.readBook()}>点击阅读</button>}
         <Button type='primary' onClick={this.readBook}>点击阅读</Button>
-        <ul>
+        <List>
+          {this.state.book.map((v)=> {
+            return(
+              <List.Item key={v}>
+                {v}
+              </List.Item>
+            )
+          })}
+        </List>
+        {/*<ul>
           {this.state.book.map( v => {
             return <li key={v}>{v}</li>
           })}
-        </ul>
+        </ul>}
       </div>
     )
   }
 }
 
 export default App
+*/
