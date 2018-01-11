@@ -1,4 +1,6 @@
 import React from 'react'
+// import 'antd-mobile/dist/antd-mobile.css'
+import { Button } from 'antd-mobile'
 
 class App extends React.Component {
   render() {
@@ -30,13 +32,20 @@ class Project extends React.Component {
       book:[...this.state.book, 'jquery'+ Math.random()]
     })
   }
+  componentWillMount() {
+    console.log('组件即将加载')
+  }
+  componentDidMount() {
+    console.log('组件已经加载')
+  }
   render() {
+    console.log('组件正在加载')
     // const name = '学习React'
     return(
       <div>
         <h2>我正在{this.props.name}</h2>
         {/*<button onClick={() => this.readBook()}>点击阅读</button>*/}
-        <button onClick={this.readBook}>点击阅读</button>
+        <Button type='primary' onClick={this.readBook}>点击阅读</Button>
         <ul>
           {this.state.book.map( v => {
             return <li key={v}>{v}</li>
