@@ -2,19 +2,30 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addNum, removeNum, addNumAsync } from './index.redux'
 
+// const mapStateProps = (state) => {
+//   return {num: state}
+// }
+// const actionCreators = { addNum, removeNum, addNumAsync }
+// App = connect(mapStateProps, actionCreators)(App) // 装饰器
+
+@connect(
+  // state什么属性放到porps里
+  state => ({num: state}),
+  // 想要什么方法放到props里，自动dispatch
+  { addNum, removeNum, addNumAsync }
+  ) // babel-plugin-transform-decorators-legacy插件来改进connect
+
 class App extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  // }
   render() {
       // const store = this.props.store
-      // const num = store.getState()
+      // const num = store.getState() 
       // const addNum = this.props.addNum
       // const removeNum = this.props.removeNum
       // const addNumAsync = this.props.addNumAsync
+      console.log(this.props)
       return(
         <div>
-          <h1>现在的数量是{this.props.num}</h1>
+          <h1>现在的数量是{this.props.num.read}</h1>
           {/*<button onClick ={() => store.dispatch(addNum())}>加</button>*/}
           <button onClick ={this.props.addNum}>加</button>
           <button onClick ={this.props.removeNum}>减</button>
@@ -23,14 +34,10 @@ class App extends React.Component {
       )
   }
 }
-const mapStateProps = (state) => {
-  return {num: state}
-}
-const actionCreators = { addNum, removeNum, addNumAsync }
-App = connect(mapStateProps, actionCreators)(App) // 装饰器
-export default App
-/*
 
+export default App
+
+/*
 // import 'antd-mobile/dist/antd-mobile.css'
 import { Button,List } from 'antd-mobile'
 

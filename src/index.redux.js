@@ -3,14 +3,14 @@ const ADD_STATE = 'vue'
 const REMOVE_STAATE = 'react'
 
 // reducer
-export function read(state, action) {
+export function read(state=10, action) {
 	switch(action.type) {
 		case ADD_STATE: 
 			return state + 1
 		case REMOVE_STAATE: 
 			return state - 1
 		default: 
-			return 10
+			return state
 	}
 }
 
