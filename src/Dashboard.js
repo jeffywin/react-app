@@ -1,11 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {
 	BrowserRouter as Router,
 	Link,
 	Route,
-	Switch
+	Switch,
+	Redirect
 } from 'react-router-dom'
 import App from './App'
+import { logout, login } from './Auth.redux'
 
 function About() {
 	return <h1>About</h1>
@@ -15,15 +18,19 @@ function Topics() {
 	return <h1>Topics</h1>
 }
 
+@connect(
+	state => state.auth,
+	{ logout }
+)
+
 class Dashboard extends React.Component {
 	render() {
-		// const url = this.props.match.url
-		return(
-			<Router>
+			const redirecLogin = <Redirect to='/login'></Redirect>
+			const App = (
+				<Router>
 				<div>
 				<ul>
 						<li> 
-							{/*Link跳转专用*/}
 							<Link to='/dashboard'>Home</Link>
 						</li>
 						<li>
@@ -41,6 +48,7 @@ class Dashboard extends React.Component {
 			</div>
 			</Router>
 		)
+			return this.props.isAuth ? App : redirecLogin
 	}
 }
 

@@ -5,7 +5,6 @@ import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Auth from './Auth.js'
 import Dashboard from './Dashboard'
-
 import {
   BrowserRouter as Router,
   Route,
@@ -44,7 +43,6 @@ const store = createStore(reducers, compose(
 						<Redirect to='/dashboard'></Redirect> 
 					{/*如果都没有选对login或者dash，直接跳转到dashboard*/}
 					</Switch>
-
 
 					{/*	<ul>
 						<li> 
