@@ -26,8 +26,7 @@ function Topics() {
 class Dashboard extends React.Component {
 	render() {
 			const redirecLogin = <Redirect to='/login'></Redirect>
-			const App = (
-				<Router>
+			const page = (
 				<div>
 				<ul>
 						<li> 
@@ -45,10 +44,10 @@ class Dashboard extends React.Component {
 						<Route path='/dashboard/about' component={About}></Route>
 						<Route path='/dashboard/topics' component={Topics}></Route>
 					</Switch>
+					<button onClick={this.props.logout}>注销</button>
 			</div>
-			</Router>
 		)
-			return this.props.isAuth ? App : redirecLogin
+			return this.props.isAuth ? page : redirecLogin
 	}
 }
 
