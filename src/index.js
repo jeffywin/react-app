@@ -5,6 +5,7 @@ import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import Auth from './Auth.js'
 import Dashboard from './Dashboard'
+import './config'
 import {
   BrowserRouter as Router,
   Route,

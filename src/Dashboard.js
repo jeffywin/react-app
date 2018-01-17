@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	BrowserRouter as Router,
 	Link,
 	Route,
 	Switch,
 	Redirect
 } from 'react-router-dom'
 import App from './App'
-import { logout, login } from './Auth.redux'
+import { logout } from './Auth.redux'
 
 function About() {
 	return <h1>About</h1>
@@ -25,24 +24,25 @@ function Topics() {
 
 class Dashboard extends React.Component {
 	render() {
+			const match = this.props.match.url
 			const redirecLogin = <Redirect to='/login'></Redirect>
 			const page = (
 				<div>
 				<ul>
 						<li> 
-							<Link to='/dashboard'>Home</Link>
+							<Link to={`${match}`}>Home</Link>
 						</li>
 						<li>
-							<Link to='/dashboard/about'>About</Link>
+							<Link to={`${match}/about`}>About</Link>
 						</li>
 						<li>
-							<Link to='/dashboard/topics'>Topics</Link>
+							<Link to={`${match}/topics`}>Topics</Link>
 						</li>
 					</ul>
 					<Switch> 
-						<Route path='/dashboard/' exact component={App}></Route>
-						<Route path='/dashboard/about' component={About}></Route>
-						<Route path='/dashboard/topics' component={Topics}></Route>
+						<Route path={`${match}`} exact component={App}></Route>
+						<Route path={`${match}/about`} component={About}></Route>
+						<Route path={`${match}/topics`} component={Topics}></Route>
 					</Switch>
 					<button onClick={this.props.logout}>注销</button>
 			</div>
