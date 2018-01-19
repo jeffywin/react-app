@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import App from './App';
+import ReactDOM from 'react-dom'
+import {createStore, applyMiddleware, compose } from 'redux'
 import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import Auth from './Auth.js'
-import Dashboard from './Dashboard'
+// import Auth from './Auth.js'
+// import Dashboard from './Dashboard'
 import './config'
 import {
   BrowserRouter as Router,
@@ -13,11 +13,10 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import {createStore, applyMiddleware, compose } from 'redux'
-// import { read, addNum, removeNum, addNumAsync } from './index.redux'
-// import { read } from './index.redux'
-// import { auth } from './Auth.redux'
 import reducers from './reducer'
+import Login from './container/login/login'
+import Register from './container/register/register'
+import AuthRoute from './component/authroute/authroute'
 
 const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
 const store = createStore(reducers, compose(
@@ -25,7 +24,25 @@ const store = createStore(reducers, compose(
 			devtools
 		)
 	)
+
+ReactDOM.render(
+	<Provider store={store}>
+		<Router> 
+			<Switch>
+				{/*检测路由*/}
+				<AuthRoute></AuthRoute>
+				<Route path='/login' exact component={ Login }></Route>
+				<Route path='/register' component={ Register }></Route>
+				<Redirect to='/login'></Redirect> 
+			</Switch>
+		</Router>
+	</Provider>,
+	document.getElementById('root')
+)
 		
+	// import App from './App';
+	// import { read, addNum, removeNum, addNumAsync } from './index.redux'
+	// import { read } from './index.redux'
 	// function About() {
 	// 	return <h1>About</h1>
 	// }
@@ -34,7 +51,7 @@ const store = createStore(reducers, compose(
 	// 	return <h1>Topics</h1>
 	// }
 	
-	ReactDOM.render(
+		{/*ReactDOM.render(
 			<Provider store={store}>
 				<Router>
 					<div>
@@ -42,10 +59,9 @@ const store = createStore(reducers, compose(
 						<Route path='/login' exact component={Auth}></Route>
 						<Route path='/dashboard' component={Dashboard}></Route>
 						<Redirect to='/dashboard'></Redirect> 
-					{/*如果都没有选对login或者dash，直接跳转到dashboard*/}
 					</Switch>
 
-					{/*	<ul>
+					<ul>
 						<li> 
 							{/*Link跳转专用}
 							<Link to='/'>Home</Link>
@@ -63,12 +79,13 @@ const store = createStore(reducers, compose(
 						<Route path='/about' component={About}></Route>
 						<Route path='/topics' component={Topics}></Route>
 						{/*<Route path=':location' component={Test}></Route>/}
-					</Switch>*/}
+					</Switch>
 					</div>					
 				</Router>
 			</Provider>,
 			document.getElementById('root')
 		)
+	*/ }
 
 // function render() {
 // 	ReactDOM.render(<App store={store} addNum={addNum} addNumAsync={addNumAsync} removeNum = {removeNum}/>, document.getElementById('root'))
