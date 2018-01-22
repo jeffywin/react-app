@@ -3,9 +3,9 @@ import Logo from '../../component/logo/logo.js'
 import { List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 
 class Login extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+	// constructor(props) {
+	// 	super(props);
+	// }
 	register = () => {
 		this.props.history.push('./register')
 	}

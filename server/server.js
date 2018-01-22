@@ -4,7 +4,7 @@ const userRouter = require('./user')
 // 新建app
 const app = express()
 // 开启中间件
-app.use('./user', userRouter)
+app.use('/user', userRouter)
 
 // 监听端口
 app.listen(9010, function() {
@@ -14,9 +14,9 @@ app.listen(9010, function() {
 // 链接mongoDb，并且使用react-app这个
 // const DB_URL = 'mongodb://127.0.0.1:27017/react-app'
 // mongoose.connect(DB_URL)
-//mongoose.connection.on('connected', function() {
-	// console.log('mongo connect success')
-//})
+// mongoose.connection.on('connected', function() {
+// 	console.log('mongo connect success')
+// })
 
 //类似mySql中的表，mongoDB中是文档，字段的概念
 // const User = mongoose.model('user', new mongoose.Schema({
