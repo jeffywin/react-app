@@ -9,8 +9,6 @@ import './config'
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect,
 } from 'react-router-dom'
 
 import reducers from './reducer'
@@ -24,16 +22,20 @@ const store = createStore(reducers, compose(
 			devtools
 		)
 	)
+function Boss() { // 无状态组件
+	return <h2>Boss页面</h2>
+}
 
 ReactDOM.render(
 	<Provider store={store}>
 		<Router> 
-			<Switch>
+			<div>
+				{/*检测路由*/}
 				<AuthRoute></AuthRoute>
+				<Route path='/boss' exact component={ Boss }></Route>
 				<Route path='/login' exact component={ Login }></Route>
 				<Route path='/register' component={ Register }></Route>
-				<Redirect to='/login'></Redirect> 
-			</Switch>
+			</div>	
 		</Router>
 	</Provider>,
 	document.getElementById('root')
@@ -50,7 +52,7 @@ ReactDOM.render(
 	// 	return <h1>Topics</h1>
 	// }
 	
-		/*ReactDOM.render(
+		{/*ReactDOM.render(
 			<Provider store={store}>
 				<Router>
 					<div>
@@ -84,7 +86,7 @@ ReactDOM.render(
 			</Provider>,
 			document.getElementById('root')
 		)
-	*/ 
+	*/ }
 
 // function render() {
 // 	ReactDOM.render(<App store={store} addNum={addNum} addNumAsync={addNumAsync} removeNum = {removeNum}/>, document.getElementById('root'))
