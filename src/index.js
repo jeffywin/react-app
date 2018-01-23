@@ -52,7 +52,7 @@ ReactDOM.render(
 	// 	return <h1>Topics</h1>
 	// }
 	
-		{/*ReactDOM.render(
+		/*ReactDOM.render(
 			<Provider store={store}>
 				<Router>
 					<div>
@@ -86,7 +86,7 @@ ReactDOM.render(
 			</Provider>,
 			document.getElementById('root')
 		)
-	*/ }
+	*/ 
 
 // function render() {
 // 	ReactDOM.render(<App store={store} addNum={addNum} addNumAsync={addNumAsync} removeNum = {removeNum}/>, document.getElementById('root'))

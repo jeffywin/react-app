@@ -17,7 +17,7 @@ export function auth( state={ isAuth:false, user:'jeffywin'}, action) {
 			return state
 	}
 }
-export function getUserData() {
+export function getUserData() { // 异步要用dispatch
 	return dispatch => {
 		axios.get('/data').then((res) => {
 		if (res.status === 200) {
