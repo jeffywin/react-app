@@ -1,11 +1,15 @@
 const express = require('express')
 const userRouter = require('./user')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 //const mongoose = require('mongoose')
 // 新建app
 const app = express()
+app.use(cookieParser())
+app.use(bodyParser.json())
+
 // 开启中间件
 app.use('/user', userRouter)
-
 // 监听端口
 app.listen(9010, function() {
 	console.log('welome to express home')
