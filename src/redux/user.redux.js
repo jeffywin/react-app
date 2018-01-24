@@ -41,7 +41,7 @@ export function register({user, pwd, rpwd, type}) {
 		return errorLog('两次密码不一致')
 	}
 
-	return dispatch => {
+	return dispatch => { 
 		axios.post('/user/register',{user, pwd, type}).then(res => {
 			if(res.status === 200 && res.data.code === 0) {
 				dispatch(registSuccess({user, pwd, type}))
