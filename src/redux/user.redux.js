@@ -4,6 +4,7 @@ import {getRediPath} from '../util'
 const REGUST_SUCCESS = 'REGUST_SUCCESS'
 const ERROR_LOG = 'ERROR_LOG'
 const LOGIN_SUCCESS = 'LIGIN_SUCCESS'
+const LOAD_DATA = 'LOAD_DATA'
 
 const initState = {
 	redirectPath: '',
@@ -23,6 +24,8 @@ export function user(state=initState, action) {
 			return {...state, isAuth: false, msg: action.msg }
 		case LOGIN_SUCCESS: 
 			return {...state, isAuth: true, redirectPath: getRediPath(action.payload), ...action.payload}
+		case LOAD_DATA:
+			return {...state, ...action.payload}
 		default: 
 			return state
 	}
@@ -35,9 +38,24 @@ function registSuccess(data) {
 function loginSuccess(data) {
 	return {type: LOGIN_SUCCESS, payload: data}
 }
+function loadData(info) {
+	return {type: LOAD_DATA,payload: info}
+}
 
 function errorLog(msg) {
 	return {msg, type: ERROR_LOG}
+}
+
+export function userInfo() {
+	return dispatch => { 
+		axios.get('/user/info').then(res => {
+			if(res.status === 200 && res.data.code === 0) {
+				dispatch(loadData(res.data.data))
+			} else {
+				this.props.history.push('/login')
+			}
+		})
+	} 
 }
 
 export function login({user, pwd}) {
