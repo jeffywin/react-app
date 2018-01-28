@@ -1,5 +1,5 @@
 import React from 'react'
-import {List,InputItem,Button,NavBar} from 'antd-mobile'
+import {List,InputItem,Button,NavBar,TextareaItem} from 'antd-mobile'
 import AvaSelector from '../avaSelector/avaSelector'
 
 class BossInfo extends React.Component {
@@ -7,12 +7,18 @@ class BossInfo extends React.Component {
 		super(props);
 		this.state = {
 			title: '',
-			company: '',
-			money: '',
-			desc: ''
+			// company: '',
+			// money: '',
+			// desc: '',
+			// avatar: ''
 		}
 	}
-	handleChange(key,val){
+	selecAvatar = (imgName) => {
+		this.setState({
+			avatar: imgName
+		})
+	}
+	handleChange(key, val){
 		this.setState({
 			[key]:val
 		})
@@ -22,24 +28,28 @@ class BossInfo extends React.Component {
 			<div>
 				<List>
 				<NavBar>BOSSINFO</NavBar>
-				<AvaSelector></AvaSelector>
+				<AvaSelector selecAva={this.selecAvatar}></AvaSelector>
 					<InputItem
-					onChange={(v) => this.handleChange('title': v)}	
+					onChange={v => this.handleChange('title', v)}	
 					>
 					招聘职位</InputItem>
 					<InputItem
-					onChange={(v) => this.handleChange('company': v)}	
+					onChange={v => this.handleChange('company', v)}	
 					>
 					公司名称</InputItem>
 					<InputItem
-					onChange={(v) => this.handleChange('money': v)}	
+					onChange={v => this.handleChange('money', v)}	
 					>
 					招聘薪资</InputItem>
-					<InputItem
-					onChange={(v) => this.handleChange('desc': v)}	
+					<TextareaItem
+					title='职位描述'
+					autoHeight
+					rows={3}
+					onChange={v => this.handleChange('desc', v)}	
 					>
-					职位描述</InputItem>
+					</TextareaItem>
 				</List>
+				<Button type='primary'>保存</Button>
 			</div>
 		)
 	}
