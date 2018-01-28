@@ -1,7 +1,12 @@
 import React from 'react'
 import {Grid, List} from 'antd-mobile'
+import PropsTypes from 'prop-types'
 
 class AvaSelector extends React.Component {
+	static propsTypes = {//类型检测，要求selecAva必须是函数
+		selecAva: PropsTypes.func.isRequired
+	}
+
 	constructor(props) {
 		super(props);
 		this.state={}

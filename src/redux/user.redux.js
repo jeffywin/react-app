@@ -42,7 +42,8 @@ export function user(state=initState, action) {
 // 	return {type: LOGIN_SUCCESS, payload: data}
 // }
 
-function authSuccess(data) {
+function authSuccess(obj) {
+	const {pwd, ...data} = obj // 去除pwd
 	return {type: AUTH_SUCCESS, payload: data}
 }
 
