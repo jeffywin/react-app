@@ -6,7 +6,7 @@ const User = model.getModel('user')
 const util = require('utility') // md5加密
 
 Router.get('/list', function(req, res) {
-	//User.remove({},function(err,doc){})
+	// User.remove({},function(err,doc){})
 	User.find({}, function(err, doc) {
 		return res.json(doc)
 	})
