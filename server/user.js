@@ -12,7 +12,7 @@ Router.get('/list', function(req, res) {
 	})
 })
 
-Router.get('/info', function(req, res) { //访问info页面时，拿到cookie
+Router.get('/info', function(req, res) { //访问info页面时，拿到cookie get/post
 	const {userid} = req.cookies
 	if(!userid) {
 		return res.json({code:1})
@@ -22,7 +22,7 @@ Router.get('/info', function(req, res) { //访问info页面时，拿到cookie
 			return res.json({code:1, msg:'服务器出错了'})
 		}
 		if(doc) {
-			return res.json({code:0, data:doc})
+			return res.json({code:0, data:doc}) 
 		}
 	})
 })
@@ -34,7 +34,7 @@ Router.post('/login', function(req, res) {// 服务器接受登录的信息
 			return res.json({code: 1, msg: '用户名或者密码错误'})
 		}
 		res.cookie('userid',doc._id) //根据登录的用户id存储cookie
-		return res.json({code:0,data:doc})
+		return res.json({code:0,data:doc}) // 返回data信息给前端
 	})
 })
 

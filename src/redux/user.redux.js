@@ -38,8 +38,9 @@ function registSuccess(data) {
 function loginSuccess(data) {
 	return {type: LOGIN_SUCCESS, payload: data}
 }
+
 function loadData(info) {
-	return {type: LOAD_DATA,payload: info}
+	return {type: LOAD_DATA, payload: info}
 }
 
 function errorLog(msg) {
@@ -65,7 +66,7 @@ export function login({user, pwd}) {
 	return dispatch => { 
 		axios.post('/user/login',{user, pwd}).then(res => {
 			if(res.status === 200 && res.data.code === 0) {
-				dispatch(loginSuccess({user, pwd}))
+				dispatch(loginSuccess(res.data.data))//后端返回的data字段
 			} else {
 				dispatch(errorLog(res.data.msg))
 			}

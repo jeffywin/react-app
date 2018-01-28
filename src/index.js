@@ -15,6 +15,7 @@ import reducers from './reducer'
 import Login from './container/login/login'
 import Register from './container/register/register'
 import AuthRoute from './component/authroute/authroute'
+import BossInfo from './container/bossInfo/bossInfo'
 
 const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
 const store = createStore(reducers, compose(
@@ -22,9 +23,9 @@ const store = createStore(reducers, compose(
 			devtools
 		)
 	)
-function Boss() { // 无状态组件
-	return <h2>Boss页面</h2>
-}
+// function Boss() { // 无状态组件
+// 	return <h2>Boss页面</h2>
+// }
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -32,7 +33,7 @@ ReactDOM.render(
 			<div>
 				{/*检测路由*/}
 				<AuthRoute></AuthRoute>
-				<Route path='/boss' exact component={ Boss }></Route>
+				<Route path='/bossInfo' exact component={ BossInfo }></Route>
 				<Route path='/login' exact component={ Login }></Route>
 				<Route path='/register' component={ Register }></Route>
 			</div>	
