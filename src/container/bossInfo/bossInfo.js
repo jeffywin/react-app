@@ -1,22 +1,28 @@
 import React from 'react'
 import {List,InputItem,Button,NavBar,TextareaItem} from 'antd-mobile'
 import AvaSelector from '../avaSelector/avaSelector'
+import {connect} from 'react-redux'
+import {updata} from '../../redux/user.redux'
+import {Redirect} from 'react-router-dom'
 
+@connect(
+	state=>state.user,
+	{updata}
+)
 class BossInfo extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			title: '',
-			// company: '',
-			// money: '',
-			// desc: '',
-			// avatar: ''
+			title: ''
 		}
 	}
 	selecAvatar = (imgName) => {
 		this.setState({
 			avatar: imgName
 		})
+	}
+	save = () => {
+		this.props.updata(this.state) //传给redux
 	}
 	handleChange(key, val){
 		this.setState({
@@ -26,6 +32,7 @@ class BossInfo extends React.Component {
 	render() {
 		return(
 			<div>
+				{this.props.redirectPath ?<Redirect to={this.props.redirectPath}></Redirect> : null}
 				<List>
 				<NavBar>BOSSINFO</NavBar>
 				<AvaSelector selecAva={this.selecAvatar}></AvaSelector>
@@ -49,7 +56,10 @@ class BossInfo extends React.Component {
 					>
 					</TextareaItem>
 				</List>
-				<Button type='primary'>保存</Button>
+				<Button 
+				type='primary'
+				onClick={this.save}
+				>保存</Button>
 			</div>
 		)
 	}

@@ -38,6 +38,21 @@ Router.post('/login', function(req, res) {// 服务器接受登录的信息
 	})
 })
 
+Router.post('/updata', function(req,res) { //只要进入info页面，就会检测cookie，存取cookie
+	const {userid} = req.cookies //获取cookies
+	if(!userid) {
+		return json.dumps({code:1})
+	}
+	const body = req.body
+	User.findByIdAndUpdate(userid,body,function(err,doc){//查找并更新
+		const data = Object.assign({
+			user: doc.user,
+			type: doc.type
+		}, body)
+		return res.json({code:0,data})
+	})
+})
+
 Router.post('/register', function(req, res) {// 服务器接受注册的信息
 	const {user, pwd, type} = req.body
 	User.findOne({user}, function(err, doc) {
