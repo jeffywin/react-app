@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import {createStore, applyMiddleware, compose } from 'redux'
 import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import './index.css';
 // import Auth from './Auth.js'
 // import Dashboard from './Dashboard'
 import './config'
@@ -17,6 +18,7 @@ import Register from './container/register/register'
 import AuthRoute from './component/authroute/authroute'
 import BossInfo from './container/bossInfo/bossInfo'
 import GeniusInfo from './container/geniusInfo/geniusInfo'
+import Dashboard from './component/dashboard/dashboard'
 
 const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
 const store = createStore(reducers, compose(
@@ -24,7 +26,7 @@ const store = createStore(reducers, compose(
 			devtools
 		)
 	)
-// function Boss() { // 无状态组件
+// function Boss() { // 无状态组件 
 // 	return <h2>Boss页面</h2>
 // }
 
@@ -38,6 +40,7 @@ ReactDOM.render(
 				<Route path='/bossInfo' exact component={ BossInfo }></Route>
 				<Route path='/login' exact component={ Login }></Route>
 				<Route path='/register' component={ Register }></Route>
+				<Route component={Dashboard} ></Route>
 			</div>	
 		</Router>
 	</Provider>,
@@ -97,10 +100,6 @@ ReactDOM.render(
 // render()
 // store.subscribe(render)
 
-
-
-
-// import './index.css';
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
 
