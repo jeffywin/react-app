@@ -10,7 +10,7 @@ body {
 	width: 100%;
 }
 
-.am-navbar {
+.fixHeader.am-navbar {
 	position: fixed;
 	top: 0;
 	width: 100%;

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import {createStore, applyMiddleware, compose } from 'redux'
 import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+import {Switch} from 'react-router-dom'
 import './index.css';
 // import Auth from './Auth.js'
 // import Dashboard from './Dashboard'
@@ -36,11 +37,13 @@ ReactDOM.render(
 			<div>
 				{/*检测路由*/}
 				<AuthRoute></AuthRoute>
-				<Route path='/geniusInfo' exact component={ GeniusInfo }></Route>
-				<Route path='/bossInfo' exact component={ BossInfo }></Route>
-				<Route path='/login' exact component={ Login }></Route>
-				<Route path='/register' component={ Register }></Route>
-				<Route component={Dashboard} ></Route>
+				<Switch>
+					<Route path='/geniusInfo' exact component={ GeniusInfo }></Route>
+					<Route path='/bossInfo' exact component={ BossInfo }></Route>
+					<Route path='/login' exact component={ Login }></Route>
+					<Route path='/register' component={ Register }></Route>
+					<Route component={Dashboard} ></Route>
+				</Switch>
 			</div>	
 		</Router>
 	</Provider>,
