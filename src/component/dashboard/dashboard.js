@@ -3,13 +3,9 @@ import { NavBar, Icon } from 'antd-mobile';
 import {connect} from 'react-redux'
 import NavLinkBar from '../navlinkbar/navlinkbar'
 import {Switch, Route} from 'react-router-dom'
+import Boss from '../../component/boss/boss'
+import Genius from '../../component/genius/genius'
 
-function Boss() {
-	return <h2>Boss首页</h2>
-}
-function Genius() {
-	return <h2>牛人</h2>
-}
 function User() {
 	return <h2>个人中心</h2>
 }
@@ -29,19 +25,19 @@ class Dashboard extends React.Component {
 		const NavList = [
 			{
 				path: '/boss',
-				text: '牛人',
-				title: '牛人列表',
+				text: '公司',
+				title: '公司列表',
 				icon: 'boss',
 				component: Boss,
-				hide: user.type == 'genius'
+				hide: user.type == 'boss'
 			},
 			{
 				path: '/genius',
 				text: '求职者',
-				title: '求职列表',
+				title: '求职者列表',
 				icon: 'job',
 				component: Genius,
-				hide: user.type == 'boss'
+				hide: user.type == 'genius'
 			},
 			{
 				path: '/msg',

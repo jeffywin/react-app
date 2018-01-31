@@ -5,10 +5,11 @@ const model = require('./model')
 const User = model.getModel('user')
 const util = require('utility') // md5加密
 
-Router.get('/list', function(req, res) {
+Router.get('/list', function(req, res) { //给前端返回数据
+	const {type} = req.query
 	// User.remove({},function(err,doc){})
-	User.find({}, function(err, doc) {
-		return res.json(doc)
+	User.find({type}, function(err, doc) {
+		return res.json({code:0,data:doc})
 	})
 })
 
