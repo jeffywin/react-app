@@ -5,13 +5,9 @@ import NavLinkBar from '../navlinkbar/navlinkbar'
 import {Switch, Route} from 'react-router-dom'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
+import User from '../../component/user/user'
+import Msg from '../../component/msg/msg'
 
-function User() {
-	return <h2>个人中心</h2>
-}
-function Msg() {
-	return <h2>消息</h2>
-}
 @connect(
 	state=>state
 )
@@ -26,7 +22,7 @@ class Dashboard extends React.Component {
 			{
 				path: '/boss',
 				text: '公司',
-				title: '公司列表',
+				title: '求职者列表',
 				icon: 'boss',
 				component: Boss,
 				hide: user.type == 'boss'
@@ -34,7 +30,7 @@ class Dashboard extends React.Component {
 			{
 				path: '/genius',
 				text: '求职者',
-				title: '求职者列表',
+				title: 'BOSS列表',
 				icon: 'job',
 				component: Genius,
 				hide: user.type == 'genius'
