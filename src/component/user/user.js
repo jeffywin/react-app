@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 
 class User extends React.Component {
 	render() {
-		return <div>个人中心</div>
+		return <div>个人</div>
 	}
 }
 
