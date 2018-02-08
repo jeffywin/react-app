@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import {connect} from 'react-redux'
 import NavLinkBar from '../navlinkbar/navlinkbar'
 import {Switch, Route} from 'react-router-dom'
@@ -12,9 +12,9 @@ import Msg from '../../component/msg/msg'
 	state=>state
 )
 class Dashboard extends React.Component {
-	constructor(props) {
-		super(props)
-	}
+	// constructor(props) {
+	// 	super(props)
+	// }
 	render() {
 		const {pathname} = this.props.location
 		const user = this.props.user
@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
 				title: '求职者列表',
 				icon: 'boss',
 				component: Boss,
-				hide: user.type == 'boss'
+				hide: user.type === 'boss'
 			},
 			{
 				path: '/genius',
@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
 				title: 'BOSS列表',
 				icon: 'job',
 				component: Genius,
-				hide: user.type == 'genius'
+				hide: user.type === 'genius'
 			},
 			{
 				path: '/msg',

@@ -1,5 +1,5 @@
 import React from 'react'
-import {List,InputItem,Button,NavBar,TextareaItem} from 'antd-mobile'
+import {List, InputItem, Button, NavBar, TextareaItem} from 'antd-mobile'
 import AvaSelector from '../avaSelector/avaSelector'
 import {connect} from 'react-redux'
 import {updata} from '../../redux/user.redux'

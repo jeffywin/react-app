@@ -1,7 +1,7 @@
 import React from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import {connect} from 'react-redux'
-import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
+//import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
 import {getUserList} from '../../redux/chatUser.redux'
 import UserCard from '../userCard/userCard'
 

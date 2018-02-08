@@ -1,6 +1,6 @@
 import React from 'react'
 import propTypes from 'prop-types'
-import { TabBar, Icon } from 'antd-mobile'
+import { TabBar } from 'antd-mobile'
 import {withRouter} from 'react-router-dom'
 
 @withRouter
