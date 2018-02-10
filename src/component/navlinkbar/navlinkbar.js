@@ -12,9 +12,9 @@ class NavLinkBar extends React.Component {
 		const { pathname } = this.props.location
 		const NavList = this.props.data.filter(v => !v.hide)
 		return(
-			<TabBar>
+				<TabBar>
 				{NavList.map(v=>(
-					<TabBar.Item
+					<TabBar.Item 
 						title={v.title}
 						key={v.text}
 						icon={{uri: require(`./img/${v.icon}.png`)}}
