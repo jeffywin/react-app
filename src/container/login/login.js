@@ -5,6 +5,23 @@ import {login} from '../../redux/user.redux'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
+//高阶组件理解 传入一个函数，返回另一个函数
+
+// function read() {
+// 	console.log('I love React')
+// }
+
+// function WrapperRead(fn) {
+// 	return function() {
+// 		console.log('before read')
+// 		fn()
+// 		console.log('after read')
+// 	}
+// }
+
+// read = WrapperRead(read) //新的fn read
+// read()
+
 @connect(
 	state => state.user,
 	{login}

@@ -6,6 +6,7 @@ const ERROR_LOG = 'ERROR_LOG'
 const AUTH_SUCCESS = 'AUTH_SUCCESS' //验证成功
 //const LOGIN_SUCCESS = 'LIGIN_SUCCESS'
 const LOAD_DATA = 'LOAD_DATA'
+const LOGOUT = 'LOGOUT'
 
 const initState = {
 	redirectPath: '',
@@ -29,6 +30,8 @@ export function user(state=initState, action) {
 		// 	return {...state, isAuth: true, redirectPath: getRediPath(action.payload), ...action.payload}
 		case LOAD_DATA:
 			return {...state, ...action.payload}
+		case LOGOUT:
+			return {...initState, redirectPath: '/login'}
 		default: 
 			return state
 	}
@@ -41,6 +44,9 @@ export function user(state=initState, action) {
 // function loginSuccess(data) {
 // 	return {type: LOGIN_SUCCESS, payload: data}
 // }
+export function logoutSubmit() {
+	return {type: LOGOUT}
+}
 
 function authSuccess(obj) {
 	const {pwd, ...data} = obj // 去除pwd
