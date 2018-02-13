@@ -22,6 +22,31 @@ import {Redirect} from 'react-router-dom'
 // read = WrapperRead(read) //新的fn read
 // read()
 
+function WrapperH(Comp) {
+	class WrapperHello extends React.Component{
+		render(){
+			return(
+				<div>
+					<p>高阶组件特有</p>
+					<Comp {...this.props}></Comp>
+				</div>
+			)
+		}
+	}
+	return WrapperHello
+}	
+
+@WrapperH
+class Hello extends React.Component {
+	render(){
+		return(
+			<h2>test React</h2>
+		)
+	}
+}
+
+//Hello = WrapperH(Hello)
+
 @connect(
 	state => state.user,
 	{login}
@@ -49,6 +74,7 @@ class Login extends React.Component {
 	render() {
 		return(
 			<div>
+			<Hello></Hello>
 			{this.props.redirectPath ? <Redirect to={this.props.redirectPath}/> : null}
 				<Logo></Logo>
 				<WingBlank>
