@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 
 //高阶组件理解 传入一个函数，返回另一个函数
+// 1. 属性代理 2.反向继承
 
 // function read() {
 // 	console.log('I love React')
@@ -22,21 +23,32 @@ import {Redirect} from 'react-router-dom'
 // read = WrapperRead(read) //新的fn read
 // read()
 
-function WrapperH(Comp) {
-	class WrapperHello extends React.Component{
-		render(){
-			return(
-				<div>
-					<p>高阶组件特有</p>
-					<Comp {...this.props}></Comp>
-				</div>
-			)
+// function WrapperH(Comp) {
+// 	class WrapperHello extends React.Component{
+// 		render(){
+// 			return(
+// 				<div>
+// 					<p>高阶组件HOC特有</p>
+// 					<Comp {...this.props}></Comp>
+// 				</div>
+// 			)
+// 		}
+// 	}
+// 	return WrapperHello
+// }	
+
+function WrapperHello(Comp) {
+	class WrapComp extends Comp{
+		componentDidMount(){
+			console.log('高阶组件新增继承Comp')
+		}
+		render() { 
+			return <Comp></Comp>
 		}
 	}
-	return WrapperHello
-}	
+}
 
-@WrapperH
+@WrapperHello
 class Hello extends React.Component {
 	render(){
 		return(
