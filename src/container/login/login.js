@@ -4,6 +4,7 @@ import { List, InputItem, WingBlank, WhiteSpace, Button} from 'antd-mobile'
 import {login} from '../../redux/user.redux'
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import highOrder from '../../component/highOrder/highOrder.js'
 
 //高阶组件理解 传入一个函数，返回另一个函数
 // 1. 属性代理 2.反向继承
@@ -37,25 +38,25 @@ import {Redirect} from 'react-router-dom'
 // 	return WrapperHello
 // }	
 
-function WrapperHello(Comp) {
-	class WrapComp extends Comp{
-		componentDidMount(){
-			console.log('高阶组件新增继承Comp')
-		}
-		render() { 
-			return <Comp></Comp>
-		}
-	}
-}
+// function WrapperHello(Comp) {
+// 	class WrapComp extends Comp{
+// 		componentDidMount(){
+// 			console.log('高阶组件新增继承Comp')
+// 		}
+// 		render() { 
+// 			return <Comp></Comp>
+// 		}
+// 	}
+// }
 
-@WrapperHello
-class Hello extends React.Component {
-	render(){
-		return(
-			<h2>test React</h2>
-		)
-	}
-}
+// @WrapperHello
+// class Hello extends React.Component {
+// 	render(){
+// 		return(
+// 			<h2>test React</h2>
+// 		)
+// 	}
+// }
 
 //Hello = WrapperH(Hello)
 
@@ -63,39 +64,38 @@ class Hello extends React.Component {
 	state => state.user,
 	{login}
 )
-
+@highOrder
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			user: '',
-			pwd: ''
-		}
+		// this.state = {
+		// 	user: '',
+		// 	pwd: ''
+		// }
 	}
 	register = () => {
 		this.props.history.push('./register')
 	}
-	handleChange = (key, val) => {
-		this.setState({
-			[key]:val
-		})
-	}
+	// handleChange = (key, val) => {
+	// 	this.setState({
+	// 		[key]:val
+	// 	})
+	// }
 	login = () => { // 登录
-		this.props.login(this.state)
+		this.props.login(this.props.state)
 	}
 	render() {
 		return(
 			<div>
-			<Hello></Hello>
 			{this.props.redirectPath ? <Redirect to={this.props.redirectPath}/> : null}
 				<Logo></Logo>
 				<WingBlank>
 					<List>
 						<InputItem
-							onChange={ v=>this.handleChange('user',v)}
+							onChange={ v=>this.props.handleChange('user',v)}
 						>用户名</InputItem>
 						<InputItem
-							onChange={ v=>this.handleChange('pwd',v)}
+							onChange={ v=>this.props.handleChange('pwd',v)}
 						>密码</InputItem>
 					</List>
 					<WhiteSpace />
