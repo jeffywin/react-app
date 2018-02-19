@@ -13,15 +13,15 @@ import highOrder from '../../component/highOrder/highOrder.js'
 @highOrder
 
 class Register extends React.Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 		// this.state = {
 		// 	type: 'boss',
 		// 	user: '',
 		// 	pwd: '',
 		// 	rpwd: ''
 		// }
-	}
+	//}
 	componentDidMount(){
 		this.props.handleChange('type','genius')
 	}

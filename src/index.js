@@ -20,6 +20,7 @@ import AuthRoute from './component/authroute/authroute'
 import BossInfo from './container/bossInfo/bossInfo'
 import GeniusInfo from './container/geniusInfo/geniusInfo'
 import Dashboard from './component/dashboard/dashboard'
+import Chat from './component/chat/chat'
 
 const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
 const store = createStore(reducers, compose(
@@ -41,6 +42,7 @@ ReactDOM.render(
 					<Route path='/geniusInfo' exact component={ GeniusInfo }></Route>
 					<Route path='/bossInfo' exact component={ BossInfo }></Route>
 					<Route path='/login' exact component={ Login }></Route>
+					<Route path='/chat/:user' exact component={ Chat }></Route>
 					<Route path='/register' component={ Register }></Route>
 					<Route component={Dashboard} ></Route>
 				</Switch>

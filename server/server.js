@@ -5,13 +5,19 @@ const bodyParser = require('body-parser')
 //const mongoose = require('mongoose')
 // 新建app
 const app = express()
+const server = require('http').Server(app)
+//express 和 socket连起来
+const io = require('socket.io')(server)
 app.use(cookieParser())
 app.use(bodyParser.json())
 
+io.on('connection', function(socket){
+	console.log('login success')
+})
 // 开启中间件
 app.use('/user', userRouter)
 // 监听端口
-app.listen(9010, function() {
+server.listen(9010, function() {
 	console.log('welome to express home')
 })
 

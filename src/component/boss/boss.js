@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 //import { Card, WingBlank, WhiteSpace } from 'antd-mobile'
 import {getUserList} from '../../redux/chatUser.redux'
 import UserCard from '../userCard/userCard'
-import {Button} from 'antd-mobile'
+//import {Button} from 'antd-mobile'
 
 @connect(
 	state => state.chatuser,
@@ -12,12 +12,12 @@ import {Button} from 'antd-mobile'
 )
 
 class Boss extends React.Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 		// this.state = {
 		// 	data: []
 		// }
-	}
+	//}
 	componentDidMount() {
 		this.props.getUserList('genius')
 		// axios.get('./user/list?type=genius').then(res=>{

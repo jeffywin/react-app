@@ -66,13 +66,13 @@ import highOrder from '../../component/highOrder/highOrder.js'
 )
 @highOrder
 class Login extends React.Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 		// this.state = {
 		// 	user: '',
 		// 	pwd: ''
 		// }
-	}
+	//}
 	register = () => {
 		this.props.history.push('./register')
 	}
