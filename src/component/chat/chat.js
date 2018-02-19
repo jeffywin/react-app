@@ -7,7 +7,7 @@ class Chat extends React.Component {
 	}
 	render(){
 		return(
-			<div>chat页面</div>
+			<div>chat页面{this.props.match.params.user}</div>
 		)
 	}
 }
