@@ -10,9 +10,12 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 app.use(cookieParser())
 app.use(bodyParser.json())
-
+//io 是全局的请求，socket是当前这次连接的请求
 io.on('connection', function(socket){
-	console.log('login success')
+	//console.log('login success')
+	socket.on('sendMsg', function(data){
+		io.emit('receMsg', data)//广播到全局
+	})
 })
 // 开启中间件
 app.use('/user', userRouter)
