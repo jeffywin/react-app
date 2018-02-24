@@ -3,7 +3,8 @@
 import { combineReducers } from 'redux'
 import { user } from './redux/user.redux'
 import { chatuser } from './redux/chatUser.redux'
-export default combineReducers({user, chatuser})
+import { chat } from './redux/chat.redux'
+export default combineReducers({user, chatuser, chat})
 
 
 // import { read } from './index.redux'
