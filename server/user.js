@@ -2,6 +2,7 @@
 const express = require('express')
 const Router = express.Router()
 const model = require('./model')
+const Chat = model.getModel('chat')
 const User = model.getModel('user')
 const util = require('utility') // md5加密
 
@@ -24,6 +25,15 @@ Router.get('/info', function(req, res) { //访问info页面时，拿到cookie ge
 		}
 		if(doc) {
 			return res.json({code:0, data:doc}) 
+		}
+	})
+})
+
+Router.get('/getmsglist',function(req,res) {
+	const {userid} = req.cookies
+	Chat.find({}, function(err,doc) {
+		if(!err) {
+			return res.json({code: 0, data:doc})
 		}
 	})
 })
