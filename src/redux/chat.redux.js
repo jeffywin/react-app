@@ -19,21 +19,39 @@ export function chat(state=initState, action) {
 		case MSG_LIST:
 			return {...state, chatmsg: action.payload}
 		case MSG_RECV:
+			return {...state, chatmsg: [...state.chatmsg, action.payload]}
 		case MSG_READ:
 		default: 
 			return state
 	}
+}
+function msgRecv(data) {
+	return {type: MSG_RECV, playload: data}
 }
 
 function msgList(msgs) {
 	return {type: MSG_LIST, playload: msgs}
 }
 
+export function recvMsg() {
+	return dispatch => {
+		socket.on('recvMsg', function(data){
+			dispatch(msgRecv(data))
+		})
+	}
+}
+
+export function sendMsg({from, to, msg}) {
+	return dispatch => {
+		socket.emit('sendMsg',{from, to, msg}) //socket 广播全局
+	}
+}
+
 export function getMsgList() {
 	return dispatch => {
-		axios.get('user/getmsglist').then(res => {
+		axios.get('/user/getmsglist').then(res => {
 			if(res.status === 200 && res.data.code === 0) {
-				dispatch(msgList(res.data.data))
+				dispatch(msgList(res.data.msgs))
 			}
 		})
 	}

@@ -2,6 +2,8 @@ const express = require('express')
 const userRouter = require('./user')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const model = require('./model')
+const Chat = model.getModel('chat')
 //const mongoose = require('mongoose')
 // 新建app
 const app = express()
@@ -14,7 +16,13 @@ app.use(bodyParser.json())
 io.on('connection', function(socket){
 	//console.log('login success')
 	socket.on('sendMsg', function(data){
-		io.emit('receMsg', data)//广播到全局
+		const {from, to, msg} = data
+		console.log(data)
+		const chatid = [from,to].sort().join('_')
+		Chat.create({chatid, from, to, content:msg}, function(err, doc) {
+			io.emit('recvMsg', Object.assign({},doc))
+		})
+		//io.emit('receMsg', data)//广播到全局
 	})
 })
 // 开启中间件
