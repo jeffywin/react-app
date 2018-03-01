@@ -6,6 +6,7 @@ const Chat = model.getModel('chat')
 const User = model.getModel('user')
 const util = require('utility') // md5加密
 
+//Chat.remove({},function(e,d){})
 Router.get('/list', function(req, res) { //给前端返回数据
 	const {type} = req.query
 	// User.remove({},function(err,doc){})

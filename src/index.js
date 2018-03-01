@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import {createStore, applyMiddleware, compose } from 'redux'
+import {createStore, applyMiddleware, compose} from 'redux'
 import chunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import {Switch} from 'react-router-dom'
@@ -24,8 +24,7 @@ import Chat from './component/chat/chat'
 
 const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
 const store = createStore(reducers, compose(
-			applyMiddleware(chunk),
-			devtools
+			applyMiddleware(chunk)
 		)
 	)
 // function Boss() { // 无状态组件 
