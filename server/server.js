@@ -20,7 +20,7 @@ io.on('connection', function(socket){
 		console.log(data)
 		const chatid = [from,to].sort().join('_')
 		Chat.create({chatid, from, to, content:msg}, function(err, doc) {
-			io.emit('recvMsg', Object.assign({},doc))
+			io.emit('recvMsg', Object.assign({},doc._doc))
 		})
 		//io.emit('receMsg', data)//广播到全局
 	})
