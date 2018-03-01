@@ -19,7 +19,7 @@ class Chat extends React.Component {
 	}
 	componentDidMount() {
 		this.props.getMsgList()
-		this.props.recvMsg()
+		//this.props.recvMsg()
 		// socket.on('receMsg', (data)=>{
 		// 	this.setState({
 		// 		msg:[...this.state.msg, data.text]//将text合并到msg中
@@ -43,8 +43,8 @@ class Chat extends React.Component {
 	render(){
 		return(
 			<div>
-				{this.state.msg.map(v=>{
-					return <p key={v}>{v}</p>
+				{this.props.chat.chatmsg.map(v=>{
+					return <p key={v._id}>{v.content}</p>
 				})}
 				<div className="stick-footer">
 				<List>

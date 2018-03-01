@@ -17,23 +17,23 @@ const initState = {
 export function chat(state=initState, action) {
 	switch(action.type) {
 		case MSG_LIST:
-			return {...state, chatmsg: action.playload}
+			return {...state, chatmsg: action.payload, unread: action.payload.filter(v=>!v.read).length}
 		case MSG_RECV:
-			return {...state, chatmsg: [...state.chatmsg, action.playload]}
+			return {...state, chatmsg: [...state.chatmsg, action.payload], unread: state.unread +1}
 		case MSG_READ:
 		default: 
 			return state
 	}
 }
 function msgRecv(data) {
-	return {type: MSG_RECV, playload: data}
+	return {type: MSG_RECV, payload: data}
 }
 
 function msgList(data) {
-	return {type: MSG_LIST, playload: data}
+	return {type: MSG_LIST, payload: data}
 }
 
-export function recvMsg() {
+export function recvMsg() { //redux 接收信息，然后socket接收广播消息
 	return dispatch => {
 		socket.on('recvMsg', function(data){
 			dispatch(msgRecv(data))
@@ -51,8 +51,7 @@ export function getMsgList() {
 	return dispatch => {
 		axios.get('/user/getmsglist').then(res => {
 			if(res.status === 200 && res.data.code === 0) {
-				console.log(111)
-				dispatch(msgList(res.data))
+				dispatch(msgList(res.data.data))
 			}
 		})
 	}
