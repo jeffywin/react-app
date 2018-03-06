@@ -7,3 +7,7 @@ export function getRediPath({type, avatar}) {
 	}
 	return url
 }
+
+export function getChatid(toId, fromId) {
+	return [toId, fromId].sort().join('_')
+}

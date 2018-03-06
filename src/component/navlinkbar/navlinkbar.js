@@ -19,7 +19,7 @@ class NavLinkBar extends React.Component {
 				<TabBar>
 				{NavList.map(v=>(
 					<TabBar.Item
-						badge={v.path === '/msg'? this.props.unread: 0}
+						badge={v.path === '/msg' ? this.props.unread: 0}
 						title={v.title}
 						key={v.text}
 						icon={{uri: require(`./img/${v.icon}.png`)}}

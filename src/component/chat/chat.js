@@ -2,6 +2,7 @@ import React from 'react'
 import {List, InputItem, NavBar} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {getMsgList, sendMsg, recvMsg} from '../../redux/chat.redux.js'
+import {getChatid} from '../../util.js'
 // import io from 'socket.io-client'
 // const socket = io('ws://localhost:9010')
 
@@ -41,6 +42,10 @@ class Chat extends React.Component {
 		this.setState({text: ''})
 	}
 	render(){
+		const userid = this.props.match.params.user//目标聊天id
+		const chatid = getChatid(userid, this.props.user._id) //user._id自己的id
+		const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
+		debugger
 		const user = this.props.match.params.user
 		const Item = List.Item
 		return(
@@ -48,7 +53,9 @@ class Chat extends React.Component {
 				<NavBar>{user}</NavBar>
 				{this.props.chat.chatmsg.map(v=>{
 					return v.from === user ? (
-						<List key={v._id}>
+						<List 
+							key={v._id}
+						>
 							<Item>
 								{v.content}	
 							</Item>

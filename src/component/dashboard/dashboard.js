@@ -18,8 +18,10 @@ class Dashboard extends React.Component {
 	// 	super(props)
 	// }
 	componentDidMount() {
-		this.props.getMsgList()
-		this.props.recvMsg()
+		if(!this.props.chat.chatmsg.length) {//没有数据再去获取
+			this.props.getMsgList()
+			this.props.recvMsg()
+		}
 	}
 	render() {
 		const {pathname} = this.props.location
