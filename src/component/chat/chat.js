@@ -45,14 +45,13 @@ class Chat extends React.Component {
 		const userid = this.props.match.params.user//目标聊天id
 		const chatid = getChatid(userid, this.props.user._id) //user._id自己的id
 		const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
-		debugger
-		const user = this.props.match.params.user
+		//const user = this.props.match.params.user
 		const Item = List.Item
 		return(
 			<div id='chat-page'>
-				<NavBar>{user}</NavBar>
-				{this.props.chat.chatmsg.map(v=>{
-					return v.from === user ? (
+				<NavBar>{userid}</NavBar>
+				{chatmsgs.map(v=>{
+					return v.from === userid ? (
 						<List 
 							key={v._id}
 						>

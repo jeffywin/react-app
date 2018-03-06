@@ -22,11 +22,15 @@ import GeniusInfo from './container/geniusInfo/geniusInfo'
 import Dashboard from './component/dashboard/dashboard'
 import Chat from './component/chat/chat'
 
-const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
+// const devtools = window.devToolsExtension ? window.devToolsExtension() : ()=>{}// 控制台调试redux用
+// const store = createStore(reducers, compose(
+// 			applyMiddleware(chunk)
+// 		)
+// 	)
 const store = createStore(reducers, compose(
-			applyMiddleware(chunk)
-		)
-	)
+	applyMiddleware(chunk),
+	window.devToolsExtension?window.devToolsExtension():f=>f
+))
 // function Boss() { // 无状态组件 
 // 	return <h2>Boss页面</h2>
 // }
