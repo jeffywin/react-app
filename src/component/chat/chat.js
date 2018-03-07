@@ -70,11 +70,12 @@ class Chat extends React.Component {
 				<div className="stick-footer">
 				<List>
 					<InputItem
-					placeholder="请输入信息"
-					value={this.state.text}
-					onChange={v=>this.handleChange('text',v)}
-					extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
-					></InputItem>
+						placeholder="请输入信息"
+						value={this.state.text}
+						onChange={v=>this.handleChange('text',v)}
+						extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
+						>
+					</InputItem>
 				</List>
 			</div>
 			</div>

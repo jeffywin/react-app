@@ -50,7 +50,6 @@ export function logoutSubmit() {
 
 function authSuccess(obj) {
 	const {pwd, ...data} = obj // 去除pwd
-	debugger
 	return {type: AUTH_SUCCESS, payload: data}
 }
 
