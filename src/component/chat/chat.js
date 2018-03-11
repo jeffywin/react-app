@@ -1,5 +1,5 @@
 import React from 'react'
-import {List, InputItem, NavBar} from 'antd-mobile'
+import {List, InputItem, NavBar, Grid} from 'antd-mobile'
 import {connect} from 'react-redux'
 import {getMsgList, sendMsg, recvMsg} from '../../redux/chat.redux.js'
 import {getChatid} from '../../util.js'
@@ -11,9 +11,9 @@ import {getChatid} from '../../util.js'
 	{getMsgList, sendMsg, recvMsg}
 )
 class Chat extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
-		this.state={
+		this.state = {
 			text: '',
 			msg: []
 		}
@@ -26,6 +26,9 @@ class Chat extends React.Component {
 		// 		msg:[...this.state.msg, data.text]//将text合并到msg中
 		// 	})
 		// })
+		setTimeout(()=>{
+			window.dispatchEvent(new Event('resize'))
+		},0)
 	}
 	handleChange(key,val) {
 		this.setState({
@@ -42,6 +45,10 @@ class Chat extends React.Component {
 		this.setState({text: ''})
 	}
 	render(){
+		const emoji = '😀 😁 😂 🤣 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 🙂 🤗 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 😛 😜 😝 🤤 😒 😓 😔 😕 🙃🤑 😲 ☹️ 🙁 😖 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 😷 🤒 🤕 🤢 🤧 😇 🤠 🤡 🤥 🤓 😈 👿 👹 👺 💀 👻 👽 🤖 💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾'
+					  .split(' ')
+					  .filter(v=>v)
+					  .map(v=>({text:v}))
 		const userid = this.props.match.params.user//目标聊天id
 		const chatid = getChatid(userid, this.props.user._id) //user._id自己的id
 		const chatmsgs = this.props.chat.chatmsg.filter(v=>v.chatid===chatid)
@@ -68,16 +75,22 @@ class Chat extends React.Component {
 						)
 				})}
 				<div className="stick-footer">
-				<List>
-					<InputItem
-						placeholder="请输入信息"
-						value={this.state.text}
-						onChange={v=>this.handleChange('text',v)}
-						extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
-						>
-					</InputItem>
-				</List>
-			</div>
+					<List>
+						<InputItem
+							placeholder="请输入信息"
+							value={this.state.text}
+							onChange={v=>this.handleChange('text',v)}
+							extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
+							>
+						</InputItem>
+						<Grid
+						  data={emoji}
+						  columnNum={9}
+						  carouselMaxRow={4}
+						  isCarousel={true}
+						></Grid>
+					</List>
+				</div>
 			</div>
 		)
 	}
