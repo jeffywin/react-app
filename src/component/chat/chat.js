@@ -15,7 +15,8 @@ class Chat extends React.Component {
 		super(props)
 		this.state = {
 			text: '',
-			msg: []
+			msg: [],
+			showEmogi: false
 		}
 	}
 	componentDidMount() {
@@ -26,7 +27,10 @@ class Chat extends React.Component {
 		// 		msg:[...this.state.msg, data.text]//将text合并到msg中
 		// 	})
 		// })
-		setTimeout(()=>{
+		this.fixCarousel()
+	}
+	fixCarousel() {
+		setTimeout(()=> {
 			window.dispatchEvent(new Event('resize'))
 		},0)
 	}
@@ -80,15 +84,34 @@ class Chat extends React.Component {
 							placeholder="请输入信息"
 							value={this.state.text}
 							onChange={v=>this.handleChange('text',v)}
-							extra={<span onClick={()=>this.handleSubmit()}>发送</span>}
+							extra={
+								<div>
+									<span style={{marginRight: '10px'}}
+									onClick={() => {
+											this.setState({
+											showEmogi: !this.state.showEmogi
+										})
+										this.fixCarousel()
+										}
+									}
+									>😀</span>
+									<span onClick={()=>this.handleSubmit()}>发送</span>
+								</div>
+							}
 							>
 						</InputItem>
-						<Grid
+						{this.state.showEmogi ? <Grid
 						  data={emoji}
 						  columnNum={9}
 						  carouselMaxRow={4}
 						  isCarousel={true}
-						></Grid>
+						  onClick={(el)=>{
+						  	this.setState({
+						  		text: this.state.text + el.text
+						  	})
+						  }}
+						></Grid>: null}
+					
 					</List>
 				</div>
 			</div>
