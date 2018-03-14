@@ -3,16 +3,12 @@ import {Button} from 'antd-mobile'
 
 class Msg extends React.Component {
 	constructor(props){
-		super(props)
-		this.logout = this.logout.bind(this)
-	}
-	logout() {
-		console.log(11)
+		super(props);
 	}
 	render() {
 		return (
 			<div>
-				<Button onClick={this.logout}>点击</Button>
+				消息列表
 			</div>
 		)
 	}
